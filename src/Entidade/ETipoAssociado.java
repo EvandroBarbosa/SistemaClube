@@ -19,6 +19,11 @@ public class ETipoAssociado {
     }
     
     public ETipoAssociado() {}
+
+    public ETipoAssociado(int codigo, String descricao) {
+       this.codigo = 1;
+       this.descricao = descricao;
+    }
     
     public int getCodigo() {
         return codigo;
@@ -48,5 +53,8 @@ public class ETipoAssociado {
     public void setValorMensalidade(double valorMensalidade) {
         this.valorMensalidade = valorMensalidade;
     }
-    
+    @Override
+    public String toString(){
+        return this.descricao;
+    }
 }
