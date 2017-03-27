@@ -25,7 +25,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
     public Associado_cadastro() {
         initComponents();
         
-        carregarCombo();
+        carregarCombo();                
     }
 
     /**
@@ -66,6 +66,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPesquisar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Evandro\\Documents\\Material de estudo\\Material\\icon\\1480048924_search.png")); // NOI18N
         btnPesquisar.setText("Pesquisar");
 
         jLabel2.setText("Nome");
@@ -74,6 +75,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Tipo Associado");
 
+        btnSalvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Evandro\\Documents\\Material de estudo\\Material\\icon\\1480048900_add_user.png")); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +83,14 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        btnExcluir.setBackground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Evandro\\Documents\\Material de estudo\\Material\\icon\\1480048911_delete.png")); // NOI18N
         btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +100,11 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
         });
 
         btnFerchar.setText("Fechar");
+        btnFerchar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFercharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,15 +186,15 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             
             if (!txtIdentificador.getText().isEmpty()) 
                 socio.setCodigo(Integer.parseInt(txtIdentificador.getText()));
-           socio.setNome(txtNome.getText());
-           socio.setEndereco(txtEndereco.getText());
+            socio.setNome(txtNome.getText());
+            socio.setEndereco(txtEndereco.getText());
            
            
            socio.setTipoAssociado((ETipoAssociado) cmbTipoAssociado.getSelectedItem());
            
            new NAssociado().salvar(socio);
            
-           JOptionPane.showMessageDialog(null, "");
+           JOptionPane.showMessageDialog(null, "Operação Reaizada com Sucesso");
            
            limparTela();
         } catch (Exception e) {
@@ -191,7 +204,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        
+        limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -212,6 +225,21 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             Logger.getLogger(Associado_cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnFercharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFercharActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnFercharActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+            String codigo = JOptionPane.showInputDialog("Informe o codigo do associado que deseja Excluir");
+            int cod = Integer.parseInt(codigo);
+            
+            EAssociado socio = new NAssociado().excluir(cod);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -255,6 +283,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }
 

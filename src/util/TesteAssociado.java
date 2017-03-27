@@ -31,27 +31,27 @@ public class TesteAssociado {
 //            System.out.println(e.getMessage());
 //        }
 
-        //criando um objeto de associado
-        EAssociado socio = new EAssociado();
-        //criando uma persistencia para gravar no banco
-        PAssociado pa = new PAssociado();
-        Scanner entrada = new Scanner(System.in);
-        
-        
-        try {
-            System.out.print("Codigo....................:");
-            socio.setCodigo(entrada.nextInt());
-            System.out.print("Nome......................:");
-            socio.setNome(entrada.next());
-            System.out.print("Endereco..................:");
-            socio.setEndereco(entrada.next());
-            System.out.print("Codigo tipoAssociado......:"); 
-            socio.getTipoAssociado().setCodigo(entrada.nextInt());
-            
-            pa.alterar(socio);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//        //criando um objeto de associado
+//        EAssociado socio = new EAssociado();
+//        //criando uma persistencia para gravar no banco
+//        PAssociado pa = new PAssociado();
+//        Scanner entrada = new Scanner(System.in);
+//        
+//        
+//        try {
+//            System.out.print("Codigo....................:");
+//            socio.setCodigo(entrada.nextInt());
+//            System.out.print("Nome......................:");
+//            socio.setNome(entrada.next());
+//            System.out.print("Endereco..................:");
+//            socio.setEndereco(entrada.next());
+//            System.out.print("Codigo tipoAssociado......:"); 
+//            socio.setTipoAssociado().setCodigo(entrada.nextInt());
+//            
+//            pa.alterar(socio);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
 
         
 //        //criando uma persistencia para gravar no banco

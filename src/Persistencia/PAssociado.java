@@ -55,7 +55,9 @@ public class PAssociado {
         cnn.close();
     }
     public void alterar(EAssociado parametro) throws SQLException{
-        String sql = "UPDATE associado"+"SET nome= ? "+"endereco = ? "+" codigo_tipoassociado = ?"+" WHERE codigo = ? ";
+        String sql = "UPDATE associado"+"SET nome= ? "+"endereco = ? "
+                        +" codigo_tipoassociado = ?"
+                        +" WHERE codigo = ? ";
         Connection cnn = util.Conexao.getConexao();
         PreparedStatement ps = cnn.prepareStatement(sql);
                 
@@ -77,7 +79,7 @@ public class PAssociado {
         cnn.close();
     }
     public EAssociado consultar(int parametro) throws SQLException{
-        String sql = "SELECT codigo, nome, endereco, "                
+        String sql = "SELECT codigo, nome, endereco, codigo_tipoassociado"                
                 + " FROM  associado "                
                 + "  WHERE codigo = ? ";
         
@@ -87,9 +89,9 @@ public class PAssociado {
         ps.setInt(1, parametro);
         ResultSet rs = ps.executeQuery();
         
-        EAssociado socio = new EAssociado();  
 //        ETipoAssociado tipo = new ETipoAssociado();
         
+        EAssociado socio = new EAssociado();  
         if (rs.next()) {
             socio.setCodigo(rs.getInt("codigo"));
             socio.setNome(rs.getString("nome"));
