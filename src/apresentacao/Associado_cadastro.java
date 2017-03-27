@@ -236,6 +236,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             String codigo = JOptionPane.showInputDialog("Informe o codigo do associado que deseja Excluir");
             int cod = Integer.parseInt(codigo);
             
+            
             EAssociado socio = new NAssociado().excluir(cod);
         } catch (Exception e) {
         }
