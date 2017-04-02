@@ -5,14 +5,15 @@
  */
 package apresentacao;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author aluno
+ * @author Evandro
  */
 public class Principal extends javax.swing.JFrame {
-
+    Associado_cadastro janela;
     /**
      * Creates new form Principal
      */
@@ -83,11 +84,6 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Sair");
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
-            }
-        });
 
         mmSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.CTRL_MASK));
         mmSair.setText("Sair");
@@ -119,38 +115,24 @@ public class Principal extends javax.swing.JFrame {
     private void mmCadAssociadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmCadAssociadoActionPerformed
         // chamando um outra janela
         try {
-            
-            Associado_cadastro janela = new Associado_cadastro();
+                      
+            if(janela == null) {
+                janela = new Associado_cadastro(prdPrincipal);
+            }
             prdPrincipal.add(janela);
             janela.setVisible(true);
-            
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_mmCadAssociadoActionPerformed
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu4ActionPerformed
-
     private void mmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmSairActionPerformed
-        // TODO add your handling code here:
-        try {
-            int resposta = JOptionPane.showConfirmDialog(null, 
-                    "Confirma a saida do Sistema! ","appclube",
-                    JOptionPane.YES_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        fecharSplicacao();
     }//GEN-LAST:event_mmSairActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-        formWindowClosing(evt);
+        fecharSplicacao();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -199,4 +181,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mmTipoAssociado;
     private javax.swing.JDesktopPane prdPrincipal;
     // End of variables declaration//GEN-END:variables
+
+    private void fecharSplicacao() {
+        try {
+            
+            int resp = JOptionPane.showConfirmDialog(null, "Confirmar a saida do programa?","AppClube",
+                                        JOptionPane.YES_NO_OPTION);
+            if (resp == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }
