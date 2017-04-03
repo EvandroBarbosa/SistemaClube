@@ -15,43 +15,37 @@ import java.util.List;
  * @author aluno
  */
 public class NTipoAssociado {
-    
+
     PTipoAssociado ptipoassociado;
-    
+
     public NTipoAssociado() {
         ptipoassociado = new PTipoAssociado();
     }
-    //validar os metodos do etipoAssocado
-    public void salvar(ETipoAssociado tipoAssociado) throws SQLException, Exception{
-        if (validar(tipoAssociado)) {
-            if (tipoAssociado.getCodigo() == 0) {
-               ptipoassociado.incluir(tipoAssociado);
-            }else{
-                ptipoassociado.alterar(tipoAssociado);
-            }
+
+    //validar os metodos incluir e alterar do etipoAssocado
+    public void salvar(ETipoAssociado codigo) throws SQLException, Exception {
+
+        if (codigo.getCodigo() == 0) {
+            ptipoassociado.incluir(codigo);
+        } else {
+            ptipoassociado.alterar(codigo);
         }
-    }
-    public void excluir(int codigo) throws SQLException{
-        ptipoassociado.excluir(codigo);
-    }
-    public void consultar(int codigo) throws SQLException{
-        ptipoassociado.consultar(codigo);
-    }
-    public List<ETipoAssociado> list() throws SQLException{
-       return ptipoassociado.listar();
-       
-       
+
     }
 
-    private boolean validar(ETipoAssociado tipoAssociado) throws Exception, Exception {
-       if(tipoAssociado.getDescricao() == null){
-           throw new Exception("É necessario fornecer a descrição");
-       }
-       if(tipoAssociado.getValorMensalidade()== 0){
-           throw new Exception("É necessario forneça o valor da mensalidade");
-       }
-       
-        return false;
+    //valida o método excluir
+    public void excluir(int codigo) throws SQLException {
+        ptipoassociado.excluir(codigo);
     }
-    
+
+    //valida o método consultar
+    public void consultar(int codigo) throws SQLException {
+        ptipoassociado.consultar(codigo);
+    }
+
+    //valida o método listar
+    public List<ETipoAssociado> list() throws SQLException {
+        return ptipoassociado.listar();
+
+    }
 }

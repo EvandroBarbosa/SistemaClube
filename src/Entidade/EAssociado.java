@@ -19,8 +19,12 @@ public class EAssociado {
     public EAssociado() {
         tipoAssociado = new ETipoAssociado();
     }
+
+    public EAssociado(ETipoAssociado tipoAssociado) {        
+        this.tipoAssociado = tipoAssociado;
+    }
     
-        
+            
     public int getCodigo() {
         return codigo;
     }

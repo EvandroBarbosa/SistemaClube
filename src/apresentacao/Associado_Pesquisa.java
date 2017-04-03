@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author aluno
+ * @author Evandro
  */
 public class Associado_Pesquisa extends javax.swing.JInternalFrame {
     JDesktopPane principal;
@@ -146,7 +146,7 @@ public class Associado_Pesquisa extends javax.swing.JInternalFrame {
             }
             
             NAssociado negocio = new NAssociado();            
-            List<EAssociado> resultado = negocio.list();
+            List<EAssociado> resultado = negocio.list(socio);
             
             preecherTabela(resultado);
         } catch (Exception e) {
@@ -155,7 +155,7 @@ public class Associado_Pesquisa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tdlResultadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tdlResultadoMousePressed
-        // TODO add your handling code here:
+        // Aqui cria uma tabela que receberá os dados da pesquisa realizada
         try {
             
             int linha = tdlResultado.getSelectedRow();

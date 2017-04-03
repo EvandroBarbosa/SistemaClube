@@ -9,11 +9,7 @@ package Persistencia;
 
 import Entidade.EAssociado;
 import Entidade.ETipoAssociado;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +18,28 @@ import java.util.List;
  * @author Evandro
  */
 public class PAssociado {
-    
+
+    public PAssociado() {
+    }
+            
     public void incluir(EAssociado parametro) throws SQLException{
-        String sql = "INSERT INTO associado (nome,endereco,codigo_tipoassociado)"+"values(?,?,?)";
+        //Criar uma String com instruções SQL para ser executada
+        String sql = "INSERT INTO associado "
+                + "(nome,endereco,codigo_tipoassociado)"
+                +"values(?, ?, ?)";
+        
+        //Cria um objeto de conexão com o banco
         Connection cnn = util.Conexao.getConexao();
+        
+        //Cria objeto para excutar os comando "contra"o banco
         PreparedStatement ps = cnn.prepareStatement(sql);
         
+        //Aqui seta os valor recebidos como parametro para a string SQL
         ps.setString(1, parametro.getNome());
         ps.setString(2, parametro.getEndereco());
         ps.setInt(3, parametro.getTipoAssociado().getCodigo());
         
+        //Aqui executa o SQL no banco de dado
         ps.execute();
         
         //Cria a instrução SQL para recuperar o valor da sequence
@@ -55,41 +63,62 @@ public class PAssociado {
         cnn.close();
     }
     public void alterar(EAssociado parametro) throws SQLException{
-        String sql = "UPDATE associado"+"SET nome= ? "+"endereco = ? "
+        //Cria um objeto de conexão com o banco
+        Connection cnn = util.Conexao.getConexao();
+        
+        //Criar uma String com instruções SQL para ser executada
+        String sql = "UPDATE associado"
+                        +"SET nome= ? "
+                        +"endereco = ? "
                         +" codigo_tipoassociado = ?"
                         +" WHERE codigo = ? ";
-        Connection cnn = util.Conexao.getConexao();
-        PreparedStatement ps = cnn.prepareStatement(sql);
                 
+       //Cria objeto para excutar os comando "contra"o banco
+        PreparedStatement ps = cnn.prepareStatement(sql);
+        
+        //Aqui seta os valor recebidos como parametro para a string SQL
         ps.setString(1, parametro.getNome());
         ps.setString(2, parametro.getEndereco());
         ps.setInt(4, parametro.getCodigo());  
         ps.setInt(3, parametro.getTipoAssociado().getCodigo());
         
+        //Aqui executa o SQL no banco de dado
         ps.executeUpdate();
+        
+        //Fecha conexão com o banco
         cnn.close();
     }
     public void excluir(int parametro) throws SQLException{
-        String sql = "DELETE FROM associado WHERE codigo = ?";
+        //Cria um objeto de conexão com o banco
         Connection cnn = util.Conexao.getConexao();
+        
+        //Criar uma String com instruções SQL para ser executada
+        String sql = "DELETE FROM associado WHERE codigo = ?";
+                
+        //Cria objeto para excutar os comando "contra"o banco
         PreparedStatement ps = cnn.prepareStatement(sql);
         
+        //Aqui seta o valor recebido como parametro para a string SQL
         ps.setInt(1, parametro);
+        
+        //Aqui executa o SQL no banco de dado
         ps.execute();
+        
+        //Fecha conexão com o banco
         cnn.close();
     }
     public EAssociado consultar(int parametro) throws SQLException{
-        String sql = "SELECT codigo, nome, endereco, codigo_tipoassociado"                
+        
+        Connection cnn = util.Conexao.getConexao();
+        String sql = "SELECT codigo, nome, endereco,"
+                + " codigo_tipoassociado"                
                 + " FROM  associado "                
                 + "  WHERE codigo = ? ";
         
-        Connection cnn = util.Conexao.getConexao();
         PreparedStatement ps = cnn.prepareStatement(sql);
         
         ps.setInt(1, parametro);
         ResultSet rs = ps.executeQuery();
-        
-//        ETipoAssociado tipo = new ETipoAssociado();
         
         EAssociado socio = new EAssociado();  
         if (rs.next()) {
@@ -98,12 +127,7 @@ public class PAssociado {
             socio.setEndereco(rs.getString("endereco"));
             
             socio.setTipoAssociado(new PTipoAssociado().consultar(rs.getInt("codigo_tipoassociado")));
-//            // pega as informações do tipo associado
-//            tipo.setCodigo(rs.getInt("tipoassociado.codigo"));
-//            tipo.setDescricao(rs.getString("tipoassociado.descricao"));
-//            tipo.setValorMensalidade(rs.getDouble("tipoassociado.valormensalidade"));
-//            
-//            socio.setTipoAssociado(tipo);
+
         }
         
         rs.close();
@@ -111,23 +135,51 @@ public class PAssociado {
         return socio;
         
     }
-    public List<EAssociado> listar() throws SQLException{
-       
-        String sql = "SELECT * "+ " FROM  associado ";     
-        
-        Connection cnn = util.Conexao.getConexao();
-        Statement stm = cnn.createStatement();
-        ResultSet rs = stm.executeQuery(sql);
-        
+    public List<EAssociado> listar(EAssociado associado) throws SQLException{
        List<EAssociado> lista = new ArrayList<>();
+       
+        Connection cnn = util.Conexao.getConexao();
+        String sql = "SELECT * "
+                + " FROM  associado "
+                + "WHERE 1=1";     
+        
+        //Aqui procura pelo nome
+        if (associado.getNome() != null) {
+            if (!associado.getNome().isEmpty()) {
+                sql += "AND nome LIKE ? ";
+            }
+        }
+        
+        //Aqui procura pelo endereço
+        if (associado.getEndereco() != null) {
+            if (!associado.getEndereco().isEmpty()) {
+                sql += "AND endereço LIKE ? ";
+            }
+        }
+        sql += " ORDER BY nome";
+               
+        PreparedStatement ps = cnn.prepareStatement(sql);
+        
+        if (associado.getNome() != null) {
+            if (!associado.getNome().isEmpty()) {
+                ps.setString(1, "%" +associado.getNome()+ "%");
+            }
+        }
+        
+        if (associado.getEndereco() != null) {
+            if (!associado.getEndereco().isEmpty()) {
+                ps.setString(1, "%" +associado.getEndereco()+ "%");
+            }
+        }
+        
+        ResultSet rs = ps.executeQuery(sql);
+        
         while(rs.next()){
             EAssociado socio = new EAssociado();
             ETipoAssociado tipo = new ETipoAssociado();
             socio.setCodigo(rs.getInt("codigo"));
             socio.setNome(rs.getString("nome"));
-            socio.setEndereco(rs.getString("endereco"));
-            socio.setTipoAssociado(new ETipoAssociado(rs.getInt("codigo_tipoassociado")));
-            
+            socio.setEndereco(rs.getString("endereco"));                        
             lista.add(socio);
         }
         rs.close();

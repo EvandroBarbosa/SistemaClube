@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author aluno
+ * @author Evandro
  */
 public class Associado_cadastro extends javax.swing.JInternalFrame {
 
@@ -205,13 +205,15 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        // Aqui configura o botão Incluir novos dados 
         try {
             
             EAssociado socio = new EAssociado();
             
-            if (!txtIdentificador.getText().isEmpty()) 
+            if (!txtIdentificador.getText().isEmpty()) {
                 socio.setCodigo(Integer.parseInt(txtIdentificador.getText()));
+            }
+            
             socio.setNome(txtNome.getText());
             socio.setEndereco(txtEndereco.getText());
            
@@ -229,8 +231,14 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
-        limparTela();
+        // Aqui configura o botão limpar os campos da tela
+        try {
+            
+            limparTela();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -248,7 +256,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Informe um codigo valido");
         } catch (Exception ex) {
-            Logger.getLogger(Associado_cadastro.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -278,7 +286,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+        // configuração do botão pesquisa que chama tabela associado pesquisa
         try {
             Associado_Pesquisa janela = new Associado_Pesquisa(principal);
             
@@ -286,6 +294,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             janela.setVisible(true);
             
             dispose();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -331,6 +340,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             txtNome.setText("");
             txtEndereco.setText("");
             
+            btnExcluir.setEnabled(false);
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
@@ -338,13 +348,15 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
     }
 
     private void preecherTela(EAssociado socio) throws Exception {
-        if(socio.getCodigo() == 0)
+        if(socio.getCodigo() == 0){
             throw new Exception("Associado não encontrado");
+        }
         txtIdentificador.setText(socio.getCodigo()+"");
-        txtNome.setText(socio.getNome()+"");
-        txtEndereco.setText(socio.getEndereco()+"");
+        txtNome.setText(socio.getNome());
+        txtEndereco.setText(socio.getEndereco());
         
         for (int i = 0; i < cmbTipoAssociado.getModel().getSize(); i++) {
+            
             ETipoAssociado item = (ETipoAssociado) cmbTipoAssociado.getModel()
                 .getElementAt(i);
             

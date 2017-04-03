@@ -6,7 +6,6 @@
 package Persistencia;
 
 import Entidade.ETipoAssociado;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,11 +22,17 @@ import util.Conexao;
 public class PTipoAssociado {
     
     public void incluir(ETipoAssociado parametro) throws SQLException{
-        //cria a construção sql que será usada para inserir as informações no banco de dados
-        String sql = "INSERT INTO tipoassociado (descricao, valormensalidade)"
-                    +" values(?,?)";        
+        
+        //Cria a instrução SQL que será usada para inserir as 
+        //informações no banco de dados
+        String sql = "INSERT INTO tipoassociado "
+                + "(descricao, "
+                + "valormensalidade)"
+                +" values(?,?)";        
+        
         //cria o objeto para a conexão com o banco de dados
         Connection cnn = util.Conexao.getConexao();
+        
         //cria o objeto para execução no banco de dado
         PreparedStatement ps = cnn.prepareStatement(sql);
         
@@ -60,6 +65,7 @@ public class PTipoAssociado {
         cnn.close();
     }
     public void alterar(ETipoAssociado parametro) throws SQLException{
+        
         //cria a construção sql que será usada para inserir as informações no banco de dados
         String sql = "UPDATE tipoassociado SET descricao = ?, "
                 +"valormensalidade = ?"
@@ -71,8 +77,7 @@ public class PTipoAssociado {
         //cria o objeto para execução no banco de dado
         PreparedStatement ps = cnn.prepareStatement(sql);
         
-        //substituo as variaveis craidas na instrução SQL
-        //pelos valores recebidos do parametro
+        //Seta os valores do prepared (?) com base no parametro recebido
         ps.setString(1, parametro.getDescricao());
         ps.setDouble(2, parametro.getValorMensalidade());
         ps.setInt(3, parametro.getCodigo());
@@ -80,22 +85,22 @@ public class PTipoAssociado {
         //Executa o comando no banco de dado
         ps.executeUpdate();
         //Fecha a conexão
-        cnn.close();
-        
-    
+        cnn.close();            
     }
     
     public void excluir(int parametro) throws SQLException{
-        //cria a construção sql que será usada para inserir as informações no banco de dados
+        
+        //cria a construção sql que será usada para 
+        //inserir as informações no banco de dados
         String sql = "DELETE FROM tipoassociado WHERE codigo = ?";
+        
         //cria o objeto para a conexão com o banco de dados
         Connection cnn = util.Conexao.getConexao();
         
          //cria o objeto para execução no banco de dado
         PreparedStatement ps = cnn.prepareStatement(sql);
         
-        //substituo as variaveis craidas na instrução SQL
-        //pelos valores recebidos do parametro
+        //Seta os valores do prepared (?) com base no parametro recebido
         ps.setInt(1, parametro);
         
         //Executa o comando no banco de dado
@@ -104,7 +109,8 @@ public class PTipoAssociado {
         cnn.close();
     }
     public ETipoAssociado consultar(int parametro) throws SQLException{
-         //cria a construção sql que será usada para inserir as informações no banco de dados
+        //cria a construção sql que será usada 
+        //para inserir as informações no banco de dados
         String sql = "SELECT * FROM tipoassociado where codigo = ?";
                          
         //cria o objeto para a conexão com o banco de dados
@@ -113,8 +119,7 @@ public class PTipoAssociado {
         //cria o objeto para execução no banco de dado
         PreparedStatement ps = cnn.prepareStatement(sql);
         
-        //substituo as variaveis craidas na instrução SQL
-        //pelos valores recebidos do parametro              
+        //Seta os valores do prepared (?) com base no parametro recebido              
         ps.setInt(1,parametro);
         
         ResultSet rst = ps.executeQuery();

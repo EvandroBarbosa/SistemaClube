@@ -14,12 +14,8 @@ public class ETipoAssociado {
     private String descricao;
     private double valorMensalidade;
 
-    public ETipoAssociado(int codigo) {
-       this.codigo = codigo;
-    }
-    
     public ETipoAssociado() {}
-
+    
     public ETipoAssociado(int codigo, String descricao) {
        this.codigo = 1;
        this.descricao = descricao;
