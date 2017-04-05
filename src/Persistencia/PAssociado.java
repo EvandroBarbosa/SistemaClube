@@ -63,8 +63,6 @@ public class PAssociado {
         cnn.close();
     }
     public void alterar(EAssociado parametro) throws SQLException{
-        //Cria um objeto de conexão com o banco
-        Connection cnn = util.Conexao.getConexao();
         
         //Criar uma String com instruções SQL para ser executada
         String sql = "UPDATE associado"
@@ -73,14 +71,17 @@ public class PAssociado {
                         +" codigo_tipoassociado = ?"
                         +" WHERE codigo = ? ";
                 
+        //Cria um objeto de conexão com o banco
+        Connection cnn = util.Conexao.getConexao();
+        
        //Cria objeto para excutar os comando "contra"o banco
         PreparedStatement ps = cnn.prepareStatement(sql);
         
         //Aqui seta os valor recebidos como parametro para a string SQL
         ps.setString(1, parametro.getNome());
         ps.setString(2, parametro.getEndereco());
-        ps.setInt(4, parametro.getCodigo());  
         ps.setInt(3, parametro.getTipoAssociado().getCodigo());
+        ps.setInt(4, parametro.getCodigo());  
         
         //Aqui executa o SQL no banco de dado
         ps.executeUpdate();
@@ -89,12 +90,13 @@ public class PAssociado {
         cnn.close();
     }
     public void excluir(int parametro) throws SQLException{
-        //Cria um objeto de conexão com o banco
-        Connection cnn = util.Conexao.getConexao();
         
         //Criar uma String com instruções SQL para ser executada
         String sql = "DELETE FROM associado WHERE codigo = ?";
                 
+        //Cria um objeto de conexão com o banco
+        Connection cnn = util.Conexao.getConexao();
+        
         //Cria objeto para excutar os comando "contra"o banco
         PreparedStatement ps = cnn.prepareStatement(sql);
         
@@ -138,10 +140,11 @@ public class PAssociado {
     public List<EAssociado> listar(EAssociado associado) throws SQLException{
        List<EAssociado> lista = new ArrayList<>();
        
-        Connection cnn = util.Conexao.getConexao();
         String sql = "SELECT * "
                 + " FROM  associado "
                 + "WHERE 1=1";     
+        
+        Connection cnn = util.Conexao.getConexao();
         
         //Aqui procura pelo nome
         if (associado.getNome() != null) {
@@ -172,11 +175,10 @@ public class PAssociado {
             }
         }
         
-        ResultSet rs = ps.executeQuery(sql);
+        ResultSet rs = ps.executeQuery();
         
         while(rs.next()){
-            EAssociado socio = new EAssociado();
-            ETipoAssociado tipo = new ETipoAssociado();
+            EAssociado socio = new EAssociado();           
             socio.setCodigo(rs.getInt("codigo"));
             socio.setNome(rs.getString("nome"));
             socio.setEndereco(rs.getString("endereco"));                        

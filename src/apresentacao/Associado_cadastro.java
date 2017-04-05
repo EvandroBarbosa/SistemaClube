@@ -10,8 +10,6 @@ import Entidade.ETipoAssociado;
 import Negocio.NAssociado;
 import Negocio.NTipoAssociado;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -26,10 +24,10 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
      */
     JDesktopPane principal;
     public Associado_cadastro(JDesktopPane principal) {
-        initComponents();
-        
+        initComponents();             
         carregarCombo();   
         this.principal = principal;
+        
         
     }
 
@@ -215,8 +213,7 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
             }
             
             socio.setNome(txtNome.getText());
-            socio.setEndereco(txtEndereco.getText());
-           
+            socio.setEndereco(txtEndereco.getText());           
            
            socio.setTipoAssociado((ETipoAssociado) cmbTipoAssociado.getSelectedItem());
            
@@ -366,4 +363,6 @@ public class Associado_cadastro extends javax.swing.JInternalFrame {
         }
         btnExcluir.setEnabled(true);
     }
+
+    
 }

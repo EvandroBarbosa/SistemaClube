@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class TesteTipoAssociado {
 
-    public static void main(String[] args) {
+    
 //        ETipoAssociado tipo = new ETipoAssociado();
 //        PTipoAssociado prs = new PTipoAssociado();       
 //        
@@ -80,5 +80,5 @@ public class TesteTipoAssociado {
 //        } catch (Exception ex) {
 //            System.out.println(ex.getMessage());
 //        }
-    }
+   
 }

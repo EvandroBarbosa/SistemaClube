@@ -45,8 +45,8 @@ public class NAssociado {
     }
 
     //valida o método listar
-    public List<EAssociado> list(EAssociado associado) throws SQLException {
-        return pAssociado.listar(associado);
+    public List<EAssociado> list(EAssociado socio) throws SQLException {
+        return pAssociado.listar(socio);
     }
 
     //Esse método é chamado no metodo salvar validando as informações
@@ -71,7 +71,7 @@ public class NAssociado {
             throw new Exception("É necessario preencher o Tipo Asociado");
         }
 
-        return true;
+        return false;
 
     }
 

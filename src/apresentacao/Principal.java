@@ -5,7 +5,9 @@
  */
 package apresentacao;
 
+import java.awt.Dimension;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     Associado_cadastro janela;
+   
     /**
      * Creates new form Principal
      */
@@ -21,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();        
         this.setExtendedState(MAXIMIZED_BOTH);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,4 +197,6 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+   
 }

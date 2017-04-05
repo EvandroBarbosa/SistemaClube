@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Evandro
  */
 public class TesteAssociado {
-    public static void main(String[] args) {
+    
 //        //criando um objeto de associado
 //        EAssociado socio = new EAssociado();
 //        //criando uma persistencia para gravar no banco
@@ -73,5 +73,5 @@ public class TesteAssociado {
 //        } catch (Exception e) {
 //            System.out.println(e.getMessage());
 //        }
-    }
+   
 }
