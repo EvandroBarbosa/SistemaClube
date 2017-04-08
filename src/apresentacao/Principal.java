@@ -5,9 +5,6 @@
  */
 package apresentacao;
 
-import java.awt.Dimension;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,11 +128,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mmCadAssociadoActionPerformed
 
     private void mmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmSairActionPerformed
-        fecharSplicacao();
+        fecharAplicacao();
     }//GEN-LAST:event_mmSairActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        fecharSplicacao();
+        fecharAplicacao();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -185,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane prdPrincipal;
     // End of variables declaration//GEN-END:variables
 
-    private void fecharSplicacao() {
+    private void fecharAplicacao() {
         try {
             
             int resp = JOptionPane.showConfirmDialog(null, "Confirmar a saida do programa?","AppClube",
