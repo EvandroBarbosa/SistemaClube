@@ -57,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
         );
         prdPrincipalLayout.setVerticalGroup(
             prdPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 268, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Cadastros");
@@ -106,7 +106,9 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(prdPrincipal)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(prdPrincipal)
+                .addContainerGap())
         );
 
         pack();

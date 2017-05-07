@@ -71,7 +71,7 @@ public class NAssociado {
             throw new Exception("É necessario preencher o Tipo Asociado");
         }
 
-        return false;
+        return true;
 
     }
 

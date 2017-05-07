@@ -26,7 +26,7 @@ public class PAssociado {
         //Criar uma String com instruções SQL para ser executada
         String sql = "INSERT INTO associado "
                 + "(nome,endereco,codigo_tipoassociado)"
-                +"values(?, ?, ?)";
+                +" values(?, ?, ?)";
         
         //Cria um objeto de conexão com o banco
         Connection cnn = util.Conexao.getConexao();
