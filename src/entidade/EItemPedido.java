@@ -9,31 +9,34 @@ package entidade;
  *
  * @author aluno
  */
-public class ItemPedido {
+public class EItemPedido {
     private int codigo;
     private double precoEpoca;
     private int quantidade;
-    private Produto codigo_produto;
-    private Pedido codigo_pedido;
+    
+    private EProduto produto;
+    private EPedido pedido;
     
 
-    public ItemPedido() {
+    public EItemPedido() {
+        produto = new EProduto();
+        pedido = new EPedido();
     }
 
-    public Produto getCodigo_produto() {
-        return codigo_produto;
+    public EProduto getProduto() {
+        return produto;
     }
 
-    public void setCodigo_produto(Produto codigo_produto) {
-        this.codigo_produto = codigo_produto;
+    public void setProduto(EProduto produto) {
+        this.produto = produto;
     }
 
-    public Pedido getCodigo_pedido() {
-        return codigo_pedido;
+    public EPedido getPedido() {
+        return pedido;
     }
 
-    public void setCodigo_pedido(Pedido codigo_pedido) {
-        this.codigo_pedido = codigo_pedido;
+    public void setPedido(EPedido pedido) {
+        this.pedido = pedido;
     }
 
     

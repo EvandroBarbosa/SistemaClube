@@ -5,8 +5,8 @@
  */
 package util;
 
-import Entidade.ETipoAssociado;
-import Persistencia.PTipoAssociado;
+import entidade.ETipoAssociado;
+import persistencia.PTipoAssociado;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

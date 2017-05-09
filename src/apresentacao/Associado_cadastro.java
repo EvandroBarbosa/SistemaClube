@@ -5,10 +5,10 @@
  */
 package apresentacao;
 
-import Entidade.EAssociado;
-import Entidade.ETipoAssociado;
-import Negocio.NAssociado;
-import Negocio.NTipoAssociado;
+import entidade.EAssociado;
+import entidade.ETipoAssociado;
+import negocio.NAssociado;
+import negocio.NTipoAssociado;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;

@@ -1,12 +1,12 @@
 package entidade;
 
 
-public class Produto {
+public class EProduto {
     private String nome;
     private int codigo;
     private double precoVenda;
 
-    public Produto() {
+    public EProduto() {
     }
   
     

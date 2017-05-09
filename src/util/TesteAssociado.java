@@ -5,9 +5,9 @@
  */
 package util;
 
-import Entidade.EAssociado;
-import Entidade.ETipoAssociado;
-import Persistencia.PAssociado;
+import entidade.EAssociado;
+import entidade.ETipoAssociado;
+import persistencia.PAssociado;
 import java.util.Scanner;
 
 /**

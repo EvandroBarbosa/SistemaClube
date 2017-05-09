@@ -5,8 +5,8 @@
  */
 package apresentacao;
 
-import Entidade.EAssociado;
-import Negocio.NAssociado;
+import entidade.EAssociado;
+import negocio.NAssociado;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
