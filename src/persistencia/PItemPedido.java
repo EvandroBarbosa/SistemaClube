@@ -172,8 +172,7 @@ public class PItemPedido {
     }
 
     void excluirPorPedido(int codigo, Connection cnn) throws SQLException {
-        
-        cnn.setAutoCommit(false);
+               
         try {
             //cria instrução sql 
             String sql = "DELETE FROM itempedido "
