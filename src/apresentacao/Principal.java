@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package apresentacao;
-
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,8 +30,17 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        prdPrincipal = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        ImageIcon image = new ImageIcon(getClass().getResource("/imagens/background.jpg"));
+
+        Image img = image.getImage();
+        prdPrincipal = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(img,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
+        jMBarra = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mmCadAssociado = new javax.swing.JMenuItem();
         mmTipoAssociado = new javax.swing.JMenuItem();
@@ -60,6 +71,8 @@ public class Principal extends javax.swing.JFrame {
             prdPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 464, Short.MAX_VALUE)
         );
+
+        jMBarra.setBackground(new java.awt.Color(102, 204, 255));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cads.jpg"))); // NOI18N
         jMenu1.setText("Cadastros");
@@ -93,19 +106,19 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1.setText("Pedido");
         jMenu1.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMBarra.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mov.jpg"))); // NOI18N
         jMenu2.setText("Movimentações");
         jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jMenu2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu2);
+        jMBarra.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/rel.jpg"))); // NOI18N
         jMenu3.setText("Relatorios");
         jMenu3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jMenu3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu3);
+        jMBarra.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sa.jpg"))); // NOI18N
         jMenu4.setText("Sair");
@@ -122,9 +135,9 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(mmSair);
 
-        jMenuBar1.add(jMenu4);
+        jMBarra.add(jMenu4);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,11 +214,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMBarra;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mmCadAssociado;
     private javax.swing.JMenuItem mmSair;
